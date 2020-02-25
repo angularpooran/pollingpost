@@ -1,0 +1,35 @@
+<div class="searchtxt">
+	<input type="text" [(ngModel)] = "search" name="qry" class="form-control">
+</div>
+<table (clickOutside)="onClickedOutside($event)" style="width:100%">
+  <tr>
+    <th style= "width:400px">Title</th>
+    <th style= "width:300PX">URL</th>
+    <th style= "width:200px">Created At</th>
+	<th style= "width:200px">Auther</th>
+  </tr>
+  <tr class="classTr" *ngFor="let post of posts | filter:search" (click)="show(post)" >
+    <td style= "width:400px">{{post.title}}</td>
+    <td style= "width:300px;">{{post.url}}</td>
+    <td style= "width:200px">{{post.created_at | date:'dd/mm/yyyy h:mm:ss a'}}</td>
+	<td style= "width:200px">{{post.author}}</td>
+  </tr>
+  
+</table>
+<!-- The Modal -->
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+       <button type="button" (click)="hide()" class="close" data-dismiss="modal">&times;</button>
+      <!-- Modal body -->
+      <div class="modal-body">
+        {{data}}
+      </div>
+
+     
+
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
